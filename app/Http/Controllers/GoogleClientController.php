@@ -41,7 +41,7 @@ class GoogleClientController extends Controller
         $client = new Client();
         $client->setApplicationName('LEAD-REVIVER CRM');
         $client->setScopes($this->scopes); // Add scopes for Oauth2
-        $client->setAuthConfig("../storage/client_secret_1.json");
+        $client->setAuthConfig("../storage/client_secret.json");
         $client->setAccessType('offline');
         $client->setPrompt('select_account consent');
 
