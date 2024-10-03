@@ -21,9 +21,9 @@ class SubscriptionController extends Controller
          * @middlewares(web, verified, auth)
          */
         return view('account.overview', [
-            'subscription' => currentTeam()->presentSubscription(),
-            'invoice' => currentTeam()->presentUpcomingInvoice(),
-            'customer' => currentTeam()->presentCustomer(),
+            // 'subscription' => currentTeam()->presentSubscription(),
+            // 'invoice' => currentTeam()->presentUpcomingInvoice(),
+            // 'customer' => currentTeam()->presentCustomer(),
 
         ]);
     }

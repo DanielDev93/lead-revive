@@ -15,7 +15,7 @@
 
         <!-- Body -->
         <div class="card-body">
-            @if (currentTeam()->onTrial() && !subscribed())
+            @if (!subscribed() && currentTeam()->onTrial())
                 <h6 class="text-cap">{{ __('Your are on trial') }}:</h6>
                 <h5>
                     {{ __('Your trial will end on: ') }} <span
@@ -27,86 +27,7 @@
             @endif
             @if (subscribed('default'))
                 <div class="row">
-                    <div class="mb-4 col-md-7 mb-md-0">
-                        <div class="mb-4">
-                            @if (currentTeam()->subscription('default')->cancelled())
-                                <p class="mb-2 head"> {{ __('Subscribed: ') }} <span
-                                        class="h4">{{ currentTeam()->plan->title }}</span> <span
-                                        class="badge badge-pill badge-warning">Canceled</span></p>
-                                <div>
-                                    <p class="mt-2 mb-2"><span
-                                            class="lead text-primary">{{ $subscription->amount() }}</span>
-                                        {{ __(' per ') }} {{ $subscription->interval() }} </p>
-                                </div>
-                                <p class="mb-3">{{ __('Your plan will be canceled on ') }}
-                                    {{ Carbon\Carbon::parse($subscription->cancelAt())->format('F d Y') }}. </p>
-
-                                <p>{{ __('Please resume your subscription to continue using our app after trial period ends') }}
-                                </p>
-
-                                <form action="{{ route('account.subscriptions.resume') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-success " id="card-button">
-                                        {{ __('Resume subscription') }} </button>
-                                </form>
-                            @endif
-                            @if (currentTeam()->subscription('default')->recurring())
-                                <h5 class="">
-                                    '{{ currentTeam()->name }}' {{ __(' is on plan :') }}
-                                    {{ currentTeam()->plan->title }} ({{ $subscription->amount() }} /
-                                    {{ $subscription->interval() }})
-                                </h5>
-                                <div>
-                                    <small class="text-cap">{{ __('Total per') }} {{ $subscription->interval() }}
-                                        :</small>
-                                    <h3 class="text-primary">{{ $subscription->amount() }}</h3>
-                                </div>
-
-                                @if ($coupon = $subscription->coupon())
-                                    <h5 class="text-success">
-                                        {{ __('Coupon') }} : {{ $coupon->name() }} ( {{ $coupon->value() }} OFF )
-                                    </h5>
-                                @endif
-
-                                @if ($invoice)
-                                    <p class="mb-2">
-                                        {{-- {{ __('Next Payment') }} : {{$invoice->amount()}} <br> --}}
-                                        {{ __('This plan renews on ') }}
-                                        {{ Carbon\Carbon::parse($invoice->nextPaymentAttempt())->format('d F Y') }}
-                                    </p>
-                                @endif
-
-                                @if ($customer)
-                                    <h4 class="text-success">
-                                        {{ __('Stripe balance') }} : {{ $customer->balance() }}
-                                    </h4>
-                                @endif
-                            @endif
-                        </div>
-                        @if (currentTeam()->subscription('default')->recurring())
-                            <a class="mb-0 mr-1 btn btn-sm btn-info mb-md-2"
-                                href="{{ route('account.subscriptions.swap') }}">Update plan</a>
-
-                            <button type="button" class="mb-0 mr-1 btn btn-sm btn-success mb-md-2" data-toggle="modal"
-                                data-target="#applyCoupon">
-                                {{ __('Apply coupon') }}
-                            </button>
-                        @endif
-                        <div class="my-2">
-                            <a class="btn btn-ghost-info"
-                                href="{{ currentTeam()->billingPortalUrl(route('account.subscriptions')) }}">
-                                {{ __('Biling portal') }}</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5 text-md-right">
-                        @if (currentTeam()->subscription('default')->recurring())
-                            <button type="button" class="mb-0 mr-1 btn btn-sm btn-warning mb-md-2" data-toggle="modal"
-                                data-target="#cancelSubscription">
-                                {{ __('Cancel Subscriptions') }}
-                            </button>
-                        @endif
-                    </div>
+                    <div class="col-12">You are subscribed successfully</div>
                 </div>
             @endif
         </div>

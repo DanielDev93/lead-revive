@@ -73,7 +73,7 @@ class ProfileController extends Controller
         $client = new Client();
         $client->setApplicationName("LEAD-REVIVER CRM");
         $client->setScopes([Gmail::GMAIL_READONLY, Gmail::GMAIL_COMPOSE, Oauth2::USERINFO_PROFILE, Oauth2::USERINFO_EMAIL]); // Add scopes for Oauth2
-        $client->setAuthConfig(storage_path("client_secret.json")); ///////jjj
+        $client->setAuthConfig("../storage/app/public/client_secret.json"); ///////jjj
         $client->setAccessType('offline');
         $client->setPrompt('select_account consent');
         // $client->setRedirectUri(env('APP_URL') . '/login/google/callback');

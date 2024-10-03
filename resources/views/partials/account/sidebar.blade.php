@@ -95,23 +95,6 @@
                                         {{ __('Subscriptions') }}
                                     </a>
                                 </li>
-                                @if (subscribed())
-                                    <li class="nav-item">
-                                        <a class="nav-link {{ return_if(on_page('account.subscriptions.card'), ' active') }}"
-                                            href="{{ route('account.subscriptions.card') }}">
-                                            <i class="fab fab fa-amazon-pay u-sidebar-nav-menu__item-icon"></i>
-                                            {{ __('Payment') }}
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('account.subscriptions.invoices') }}"
-                                            class="nav-link {{ return_if(on_page('account.subscriptions.invoices'), ' active') }}">
-                                            <i class="fas fa-broadcast-tower u-sidebar-nav-menu__item-icon"></i>
-                                            {{ __('Invoices') }}
-                                        </a>
-                                    </li>
-                                @endif
-                                @if (! subscribed())
                                     <li class="nav-item">
                                         <a href="{{ route('subscription.plans') }}"
                                             class="nav-link {{ return_if(on_page('subscription.plans'), ' active') }}">
@@ -119,7 +102,6 @@
                                             {{ __('Plans') }}
                                         </a>
                                     </li>
-                                @endif
                             </ul>
                         </div>
                     </li>
